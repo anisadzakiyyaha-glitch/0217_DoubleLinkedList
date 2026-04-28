@@ -104,8 +104,9 @@ public:
         {
             cout << "Record not found" << endl; 
             return;
-    }
-    // Step 2: If node is at the beginning 
+        }
+
+        // Step 2: If node is at the beginning 
         if (current == START)
         {
             START = current->next; // Step 2a: START = START.next 
@@ -127,7 +128,7 @@ public:
         cout << "Record with roll number " << rollNo << "deleted" << endl; 
     }
 
-     void traverse()
+    void traverse()
     {
         if (START == NULL)
         {
@@ -179,5 +180,35 @@ public:
             currentNode = currentNode->prev;
             i--;
         }
+    }
+
+    void searchData()
+    {
+        if (START == NULL)
+        {
+            cout << "\nList is empty" << endl; 
+            return;
+        }
+
+        int rollNo; 
+        cout << "\nEnter the roll number to search: ";
+        cin >> rollNo;
+
+        Node *current = START;
+
+        //Step 1: Traverse to find matching roll number 
+        while (current != NULL && current->noMhs != rollNo)
+            current = current->next; 
+
+        // Step 2: Output result 
+        if (current == NULL)
+        {
+            cout << "Record not found\n";
+        }
+        else 
+        {
+            cout << "Record found\n";
+            cout << "Roll Number: " << current->noMhs << endl; 
+        }  
     }
 };
