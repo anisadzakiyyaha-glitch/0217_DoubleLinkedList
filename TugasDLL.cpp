@@ -34,7 +34,7 @@ public:
         // Step 2: Assign value to the data fields
         newNode->noMhs =nim;
 
-          //  Step 3: Insert at beginning if list is empty or nim is smallest
+        //  Step 3: Insert at beginning if list is empty or nim is smallest
         if (START == NULL || nim <= START->noMhs)
         {
             if (START != NULL && nim == START->noMhs)
@@ -56,5 +56,29 @@ public:
             START = newNode;
             return;   
         }
+
+        // insert in between node
+        // Step 8 : Locate position for insertion
+        Node *current =START;
+        while (current->next != NULL && current->next->noMhs < nim)
+        {
+            current = current->next;
+        }
+
+        if (current->next != NULL && nim == current->next->noMhs)
+        {
+            cout << "\nDuplicate roll numbers not allowes" << endl;
+            return;
+        }
+
+        // Step 9 Insert between current and current->next
+        newNode->next = current->next; // Step 9a: newNode.next = current.next
+        newNode->prev = current;       // Step 9b: newNode.prev = current
+
+        // Insert Last node
+        if (current->next != NULL)
+            current->next ->prev = newNode; // Step 9c:  current.next.prev =newnode
+
+        current->next = newNode; // Step 9d: current.next = newNode
     }
 };
